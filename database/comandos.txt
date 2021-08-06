@@ -1,0 +1,2 @@
+
+SELECT subjects.name, teams.name, teams.time, teachers.name FROM subjects JOIN teams ON subjects.id = teams.subject_id JOIN teachers on teachers.id = teams.teacher_id;
