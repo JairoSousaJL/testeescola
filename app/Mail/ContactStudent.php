@@ -28,6 +28,6 @@ class ContactStudent extends Mailable
      */
     public function build()
     {
-        return $this->view('email.email');
+        return $this->markdown('emails.students.register');
     }
 }

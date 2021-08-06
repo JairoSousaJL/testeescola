@@ -28,3 +28,5 @@ Projeto consiste em um teste de programação em PHP utilizando o framework lara
 
 - Os ***endpoints*** serão disponibilizados na raiz do projeto em um arquivo endpoints.json. 
 - Para acessar a API, importe o arquivo endpoints.json no Postman e será criada uma nova collection com todos os endpoints do projeto.
+- As interface adicionada na collection é FormData, onde as chaves já estão definidas.
+- Cada request possui um descrição referente a suas chaves e valores.
