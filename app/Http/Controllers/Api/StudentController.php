@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudentRequest;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
@@ -14,6 +15,7 @@ class StudentController extends Controller
     public function index($id)
     {
         $id_team = $id;
+        $teacher  = Auth::user()->id;
 
         try {
             
@@ -22,16 +24,18 @@ class StudentController extends Controller
             ->join('teams', 'teams_students.teams_id', '=', 'teams.id')
             ->join('teachers', 'teams.teacher_id', '=', 'teachers.id')
             ->where('teams.id', '=', $id_team)
+            ->where('teams.teacher_id', '=', $teacher)
             ->select('students.name_student', 'teams.name_team', 'teams.time_team','teachers.name_teacher')
             ->get();
  
-            if($student){
-                return response()->json($student);
-            }else{
+            if($student->isEmpty()){
                 return response()->json([
                     'status' => 'error',
                     'message' => 'Não foi possível encontrar os alunos',
-                ], 500);
+                ]);
+                
+            }else{
+                return response()->json($student);
             }
 
         } catch (\Exception $e) {
@@ -50,6 +54,8 @@ class StudentController extends Controller
         $birth_date = str_replace("/", "-", $request->birth_date_student);
         $birth_date = date('Y-m-d', strtotime($birth_date));
 
+        echo $request->name_student;
+
         try {
 
             $student = Student::create([
@@ -60,7 +66,7 @@ class StudentController extends Controller
             return response()->json([
                 'type' => 'student',
                 'atributes' => [
-                    'name_student' => $student->name_subject,
+                    'name_student' => $student->name_student,
                     'email_student' => $student->email_student,
                     'birth_date_student' => $student->birth_date_student,
                 ]

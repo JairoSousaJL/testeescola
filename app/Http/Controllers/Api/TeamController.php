@@ -26,7 +26,7 @@ class TeamController extends Controller
     {
         $name_team = $request->name_team;
         $time = $request->time_team;
-        $teacher = $request->teacher_id;
+        $teacher  = Auth::user()->id;
 
         $time_exist = DB::table('teams')
                     ->where('name_team', '=', $name_team)
@@ -56,7 +56,12 @@ class TeamController extends Controller
 
             try {
                 
-                $team = Team::create($request->all());
+                $team = Team::create([
+                    'name_team' => $request->name_team,
+                    'time_team' => $request->time_team,
+                    'subject_id' => $request->subject_id,
+                    'teacher_id' => $teacher,
+                ]);
                 return response()->json([
                     'type' => 'team',
                     'atributes' => [

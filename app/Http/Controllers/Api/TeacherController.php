@@ -7,6 +7,7 @@ use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Resources\TeacherResource;
 use App\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
@@ -23,7 +24,11 @@ class TeacherController extends Controller
     {
 
         try { 
-            $teacher = Teacher::create($request->all());
+            $teacher = Teacher::create([
+                'name_teacher' => $request->name_teacher,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
             return response()->json([
                 'type' => 'teacher',
                 'atributes' => [
