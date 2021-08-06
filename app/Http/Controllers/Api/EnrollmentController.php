@@ -31,7 +31,7 @@ class EnrollmentController extends Controller
             if ($search_enrollment->isEmpty()) {
                 $student->teams()->attach($team_id);
                 return response()->json([
-                    'status' => 'OK',
+                    'status' => 'success',
                     'message' => 'Matricula realizada com sucesso',
                 ]);
             }else{
@@ -49,23 +49,6 @@ class EnrollmentController extends Controller
                 'message' => 'Não foi possível realizar a matricula',
                 'error' => $e->getMessage(),
             ], 500);
-        }            
-
-        /*try {
-            
-            $student->teams()->attach($team_id);
-            return response()->json([
-                'status' => 'OK',
-                'message' => 'Matricula realizada com sucesso',
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error 500',
-                'message' => 'Não foi possível realizar a matricula',
-                'error' => $e->getMessage(),
-            ], 500);
-        }*/
-        
+        }
     }
 }

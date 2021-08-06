@@ -16,7 +16,7 @@ class SubjectResource extends JsonResource
     {
 
         return [
-            'type' => 'subjects',
+            'type' => 'subject',
             'atributes' => [
                 'name_subject' =>$this->name_subject,
                 'description_subject' =>$this->description_subject,

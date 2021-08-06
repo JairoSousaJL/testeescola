@@ -62,13 +62,8 @@ class TeamController extends Controller
                     'subject_id' => $request->subject_id,
                     'teacher_id' => $teacher,
                 ]);
-                return response()->json([
-                    'type' => 'team',
-                    'atributes' => [
-                        'name_team' =>$team->name_team,
-                        'time_team' =>$team->time_team,
-                    ]
-                ], 200);
+                
+                return new TeamResource($team);
 
             } catch (\Exception $e) {
                 return response()->json([
@@ -96,7 +91,9 @@ class TeamController extends Controller
             ->first();
 
             if($my_teams){
-                return response()->json($my_teams);
+                
+                return new TeamResource($my_teams);
+                
             }else{
                 return response()->json([
                     'status' => 'error',

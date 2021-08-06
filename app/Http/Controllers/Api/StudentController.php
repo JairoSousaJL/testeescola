@@ -39,6 +39,7 @@ class StudentController extends Controller
                 
             }else{
                 return response()->json($student);
+                return new StudentResource($student);
             }
 
         } catch (\Exception $e) {
@@ -69,14 +70,7 @@ class StudentController extends Controller
 
             Mail::to($request->email_student)->send(new ContactStudent);
 
-            return response()->json([
-                'type' => 'student',
-                'atributes' => [
-                    'name_student' => $student->name_student,
-                    'email_student' => $student->email_student,
-                    'birth_date_student' => $student->birth_date_student,
-                ]
-            ], 200);
+            return new StudentResource($student);
 
         } catch (\Exception $e) {
             
@@ -110,9 +104,9 @@ class StudentController extends Controller
             $student = Student::where('id', $request->id)->delete();
             if ($student) {
                 return response()->json([
-                    'status' => 'OK',
+                    'status' => 'success',
                     'message' => 'Aluno Excluido',
-                ]);
+                ], 200);
             }else{
                 return response()->json([
                     'status' => 'error',

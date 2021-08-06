@@ -27,13 +27,7 @@ class SubjectController extends Controller
         
         try {
             $subject = Subject::create($request->all());
-            return response()->json([
-                'type' => 'subject',
-                'atributes' => [
-                    'name_subject' => $subject->name_subject,
-                    'description_subject' => $subject->description_subject,
-                ]
-            ], 200);
+            return new SubjectResource($subject);
         } catch (\Exception $e) {
             
             return response()->json([
@@ -68,7 +62,7 @@ class SubjectController extends Controller
 
         try {
             $subject->save();
-            return response()->json($subject, 200);
+            return new SubjectResource($subject);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error 500',
