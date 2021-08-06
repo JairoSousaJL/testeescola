@@ -96,8 +96,30 @@ class StudentController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        
+        try {
+
+            $student = Student::where('id', $request->id)->delete();
+            if ($student) {
+                return response()->json([
+                    'status' => 'OK',
+                    'message' => 'Aluno Excluido',
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Aluno não encontrado',
+                ]);
+            }
+            
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error 500',
+                'message' => 'Não foi possível excluir o aluno',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

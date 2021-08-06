@@ -13,6 +13,7 @@ Route::group(['middleware' => 'apiJWT'], function() {
     Route::post('/cadastrar/aluno', [\App\HTTP\Controllers\Api\StudentController::class, 'store']);
     Route::get('/alunos/{id}', [\App\Http\Controllers\Api\StudentController::class, 'index']);
     Route::post('/matricular/aluno', [\App\Http\Controllers\Api\EnrollmentController::class, 'enrollment']);
+    Route::post('/excluir/aluno', [\App\Http\Controllers\Api\StudentController::class, 'destroy']);
 
     //ROUTE SUBJECTS
     Route::post('/cadastrar/disciplina', [\App\HTTP\Controllers\Api\SubjectController::class, 'store']);
