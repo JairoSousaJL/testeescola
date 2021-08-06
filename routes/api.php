@@ -14,7 +14,6 @@ Route::group(['middleware' => 'apiJWT'], function() {
     Route::get('/alunos/{id}', [\App\Http\Controllers\Api\StudentController::class, 'index']);
     Route::post('/matricular/aluno', [\App\Http\Controllers\Api\EnrollmentController::class, 'enrollment']);
 
-
     //ROUTE SUBJECTS
     Route::post('/cadastrar/disciplina', [\App\HTTP\Controllers\Api\SubjectController::class, 'store']);
     Route::resource('/disciplina', 'Api\SubjectController');
@@ -26,13 +25,10 @@ Route::group(['middleware' => 'apiJWT'], function() {
     Route::get('/professores', [\App\Http\Controllers\Api\TeacherController::class, 'index']);
     Route::get('/perfil', [\App\Http\Controllers\Api\AuthController::class, 'me']);
 
-    
     //ROUTE TEAMS
     Route::post('/cadastrar/turma', [\App\HTTP\Controllers\Api\TeamController::class, 'store']);
     Route::get('/turma/{id}', [\App\Http\Controllers\Api\TeamController::class, 'show']);
     Route::get('/turmas', [\App\Http\Controllers\Api\TeamController::class, 'showTeams']);
 
-    
-    
 });
 
