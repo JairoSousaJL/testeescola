@@ -36,25 +36,3 @@ Route::group(['middleware' => 'apiJWT'], function() {
     
 });
 
-/*
-Route::group(['middleware' => 'apiJWT'], function() {
-    Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
-
-    //ROUTE STUDENTS
-
-
-    //ROUTE SUBJECTS
-    Route::get('/disciplina', [\App\Http\Controllers\Api\SubjectController::class, 'index']);
-    Route::post('/cadastrar/disciplina', [\App\HTTP\Controllers\Api\SubjectController::class, 'store']);
-
-
-    //ROUTE TEACHERS
-    Route::get('/professores', [\App\Http\Controllers\Api\TeacherController::class, 'index']);
-
-    
-    //ROUTE TEAMS
-
-    
-    
-});*/
-
