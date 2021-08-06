@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudentRequest;
+use App\Mail\ContactStudent;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Mockery\Matcher\Subset;
 
 class StudentController extends Controller
 {
@@ -63,6 +66,9 @@ class StudentController extends Controller
                 'email_student' => $request->email_student,
                 'birth_date_student' => $birth_date,
             ]);
+
+            Mail::to($request->email_student)->send(new ContactStudent);
+
             return response()->json([
                 'type' => 'student',
                 'atributes' => [
