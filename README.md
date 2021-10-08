@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-# API - Teste de Programação PHP! 
+# API - PHP! 
 ### Escopo
 Projeto consiste em um teste de programação em PHP utilizando o framework laravel.  Foi Desenvolvida uma API para que professores gerencie turmas, alunos e suas disciplinas.
 
